@@ -1,5 +1,18 @@
-const IndustryInsightsPage = () => {
-  return  <div>IndustryInsightsPage</div>;
-};
+import { getUserOnboardingStatus } from "@/actions/user";
+import { redirect } from "next/navigation";
 
-export default IndustryInsightsPage;
+export default async function DashboardPage() {
+  const { isOnboarded } = await getUserOnboardingStatus();
+
+  if (!isOnboarded) {
+    redirect("/onboarding");
+  }
+
+  const insights = await getIndustryInsights();
+
+  return (
+    <div className="container mx-auto">
+      <DashboardView insights={insights} />
+    </div>
+  );
+}
