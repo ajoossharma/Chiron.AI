@@ -4,6 +4,7 @@ import { db } from "@/lib/prisma";
 import { auth } from "@clerk/nextjs/server";
 import { revalidatePath } from "next/cache";
 import { generateAIInsights } from "./dashboard";
+import { cacheUserData, deleteUserSession } from "@/lib/redis";
 
 export async function updateUser(data) {
   const { userId } = await auth();
@@ -48,6 +49,10 @@ export async function updateUser(data) {
           },
         });
 
+        await cacheUserData(userId, updatedUser);
+        
+        await deleteUserSession(userId);
+
         return { updatedUser, industryInsight };
       },
       {
@@ -81,6 +86,10 @@ export async function getUserOnboardingStatus() {
         industry: true,
       },
     });
+
+    if (user) {
+      await cacheUserData(`onboarding:${userId}`, { isOnboarded: !!user?.industry }, 3600);
+    }
 
     return {
       isOnboarded: !!user?.industry,
