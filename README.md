@@ -1,8 +1,8 @@
-# Career Compass
+# Chiron.AI
 
 ![Logo](public/logo.png)
 
-Career Compass is an AI-powered career development platform that helps job seekers create professional resumes, generate tailored cover letters, and practice interview skills through interactive mock interviews.
+Chiron.AI is an AI-powered career development platform that helps job seekers create professional resumes, generate tailored cover letters, and practice interview skills through interactive mock interviews.
 
 ## Features
 
