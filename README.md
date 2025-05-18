@@ -1,6 +1,5 @@
 # Chiron.AI
 
-![Logo](public/logo.png)
 
 Chiron.AI is an AI-powered career development platform that helps job seekers create professional resumes, generate tailored cover letters, and practice interview skills through interactive mock interviews.
 
